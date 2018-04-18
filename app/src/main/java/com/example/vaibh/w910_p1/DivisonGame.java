@@ -200,16 +200,7 @@ public class DivisonGame extends Fragment implements ValueEventListener {
         }
 
 
-        public static class userInfo{
-            public String score, tries, tscore;
 
-            public userInfo(String tscore, String score,String tries){
-                    this.score = score;
-                    this.tries = tries;
-                    this.tscore = tscore;
-            }
-
-        }
 
 
 }
