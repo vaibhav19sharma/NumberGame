@@ -33,7 +33,7 @@ public class DivisonGame extends Fragment implements ValueEventListener {
     private TextView txtNum, txtDeno, txtGameOver;
     private EditText edtAnswer;
     private Button btnSubmit , btnRestart;
-    private int check;
+    private int check=1;
     private int win;
     private int ans;
     private String uid, topScore, currentTopScore;
@@ -63,7 +63,7 @@ public class DivisonGame extends Fragment implements ValueEventListener {
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         showStuff();
 
-        final DatabaseReference currentUser = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Divison");
+        final DatabaseReference currentUser = FirebaseDatabase.getInstance().getReference().child("Users");
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,18 +75,24 @@ public class DivisonGame extends Fragment implements ValueEventListener {
                     ans = newNumbers();
                     edtAnswer.setText("");
                     check = check + 1;
-                    currentUser.child("score").setValue(win);
-                    currentUser.child("tries").setValue(check);
-                    currentTopScore = getTopScore();
-                    currentUser.child("TopScore").setValue(getTopScore());
+                    currentUser.child(uid).child("Divison").child("score").setValue(win);
+                    currentUser.child(uid).child("Divison").child("tries").setValue(check);
+                   // Log.i("Working:TopScore",currentTopScore);
+                    getTopScore();
 
+                    if(topScore == null){
+                        Log.i("Working","NULL Returned");
+                    }
+                    else {
+                        currentUser.child(uid).child("Divison").child("TopScore").setValue(Integer.parseInt(topScore));
+                    }
                     Toast.makeText(getContext(), Integer.toString(win) + " out of 10, " + Integer.toString(check), Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    currentTopScore = getTopScore();
-                    if(Integer.parseInt(currentTopScore) < win){
-                        currentUser.child("TopScore").setValue(Integer.toString(win));
+                    getTopScore();
+                    if(Integer.parseInt(topScore) < win){
+                        currentUser.child(uid).child("Divison").child("TopScore").setValue(Integer.toString(win));
                     }
 
                     Log.i("Working",currentTopScore + "current top score is" );
@@ -149,18 +155,19 @@ public class DivisonGame extends Fragment implements ValueEventListener {
 
     }
 
-    String getTopScore(){
-
-        DatabaseReference currentUser_read = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Divison");
+    void getTopScore(){
+        DatabaseReference currentUser_read = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Divison/TopScore");
         currentUser_read.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("TopScore").exists()) {
-                    topScore = dataSnapshot.child("TopScore").getValue().toString();
-                    Log.i("Working", topScore);
+              //      userInfo obj = dataSnapshot.getValue(userInfo.class);
+                Log.i("WorkingT", "Working uptil here;   ");
+                if(dataSnapshot.exists()) {
+                    topScore = dataSnapshot.getValue().toString();
+                    Log.i("WorkingT", "Working uptil here;   " + dataSnapshot.getValue());
                 }
                 else{
-                    topScore = "0";
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Divison").child("TopScore").setValue(0);
                 }
             }
 
@@ -170,7 +177,6 @@ public class DivisonGame extends Fragment implements ValueEventListener {
             }
         });
 
-        return topScore;
     }
 
     void hideStuff(){
@@ -190,6 +196,18 @@ public class DivisonGame extends Fragment implements ValueEventListener {
         btnSubmit.setVisibility(View.VISIBLE);
         btnRestart.setVisibility(View.INVISIBLE);
         txtGameOver.setVisibility(View.INVISIBLE);
+        }
+
+
+        public static class userInfo{
+            public String score, tries, tscore;
+
+            public userInfo(String tscore, String score,String tries){
+                    this.score = score;
+                    this.tries = tries;
+                    this.tscore = tscore;
+            }
+
         }
 
 

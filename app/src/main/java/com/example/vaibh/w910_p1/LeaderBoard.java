@@ -46,12 +46,13 @@ public class LeaderBoard extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot uniqueKey : dataSnapshot.getChildren()) {
-                    Log.i("Working", uniqueKey.getKey() + uniqueKey.getChildren().toString());
+                   // Log.i("Working", uniqueKey.getKey() + uniqueKey.getChildren().toString());
                     for(DataSnapshot divisonKey : uniqueKey.getChildren()){
-                        Log.i("Working", "For children:      "+ divisonKey.getKey() +"  "+divisonKey.getChildren().toString());
+                       // Log.i("Working", "For children:      "+ divisonKey.getKey() +"  "+divisonKey.getChildren().toString());
                         for(DataSnapshot divisonEntires: divisonKey.getChildren()){
-                            Log.i("Working", "For divison children"+divisonEntires.getKey() + "  "+ divisonEntires.getChildren().toString());
-                            Log.i("Working", "Top score  "+ divisonEntires.getValue().toString() );
+                           // Log.i("Working", "For divison children"+divisonEntires.getKey() + "  "+ divisonEntires.getChildren().toString());
+                                Log.i("Working", "Values are:   " + divisonEntires.getValue().toString() + " Key is:   " + divisonEntires.getKey());
+
                         }
                     }
                 }

@@ -14,14 +14,16 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.*;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Signup extends AppCompatActivity {
 
-    private EditText edtUserName, edtPassword, edtConfirmPassword;
+    private EditText edtUserName, edtPassword, edtConfirmPassword, edtName;
     private Button btnSignup;
     private FirebaseAuth mAuth;
     private ProgressBar progressDialog;
-    private String email, password, confirmPassword;
+    private String email, password, confirmPassword, name, uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class Signup extends AppCompatActivity {
         edtUserName = findViewById(R.id.edtUserName);
         edtPassword = findViewById(R.id.edtPassword);
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
-
+        edtName = findViewById(R.id.edtName);
         btnSignup = findViewById(R.id.btnSignup);
 
         progressDialog = findViewById(R.id.progressBar2);
@@ -62,6 +64,10 @@ public class Signup extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Passwords don't Match", Toast.LENGTH_LONG).show();
             return;
         }
+        if(TextUtils.isEmpty(edtName.getText().toString())){
+            Toast.makeText(getApplicationContext(), "Please Enter your Name", Toast.LENGTH_LONG).show();
+            return;
+        }
         progressDialog.setVisibility(View.VISIBLE);
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -71,6 +77,9 @@ public class Signup extends AppCompatActivity {
 
                                 if (task.isSuccessful()) {
                                     progressDialog.setVisibility(View.INVISIBLE);
+                                    DatabaseReference currentUser = FirebaseDatabase.getInstance().getReference().child("Users");
+                                    uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                    currentUser.child(uid).child("Name").setValue(edtName.getText().toString());
                                     //User is successfully registered.
                                     // Redirects to Login Activity
                                     Intent login = new Intent(getApplicationContext(), Login.class);
