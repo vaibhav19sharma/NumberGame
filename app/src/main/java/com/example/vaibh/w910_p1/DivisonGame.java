@@ -71,7 +71,7 @@ public class DivisonGame extends Fragment implements ValueEventListener {
                 if (Integer.parseInt(edtAnswer.getText().toString()) == ans) {
                     win = win + 1;
                 }
-                if (check != 4 && check <4) {
+                if (check != 9 && check <9) {
                     ans = newNumbers();
                     edtAnswer.setText("");
                     check = check + 1;
@@ -132,10 +132,11 @@ public class DivisonGame extends Fragment implements ValueEventListener {
                 temp += 1;
             }
         }
-        if(temp == 0){
-            temp +=1;
-        }
         int rnd = new Random().nextInt(temp);
+        if(temp == 0){
+            rnd =0;
+        }
+
         Log.v("Working",Integer.toString(rnd));
         //   Log.v("Working",Integer.toString(array[rnd]));
 
