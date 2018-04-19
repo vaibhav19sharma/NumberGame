@@ -26,9 +26,9 @@
         android:layout_alignStart="@+id/edtUserName"
         android:layout_below="@+id/edtUserName"
         android:ems="10"
-        android:inputType="textPersonName"
-        tools:text="Password"
-        android:hint="Password"/>
+        android:hint="Password"
+        android:inputType="textPassword"
+        tools:text="Password" />
 
 
     <Button

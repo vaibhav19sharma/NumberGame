@@ -9,4 +9,12 @@
     tools:context=".HomePage"
     tools:showIn="@layout/app_bar_home_page">
 
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:text="Open the Nav Drawer to Play the game"
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="91dp" />
 </android.support.constraint.ConstraintLayout>

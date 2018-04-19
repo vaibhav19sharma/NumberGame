@@ -9,12 +9,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.security.Key;
 import java.util.ArrayList;
@@ -34,8 +38,12 @@ public class LeaderBoard extends Fragment {
 
     View fragLeader;
     Map<String,Integer> mMap = new HashMap<String, Integer>();
-    int mapSize ;
+    int mapSize;
+    int iterator;
     String [] key= new String[5];
+    private int[] txtName = new int[]{R.id.txtName1,R.id.txtName2,R.id.txtName3,R.id.txtName4,R.id.txtName5};
+    private int[] txtScore = new int[]{R.id.txtScore1,R.id.txtScore2,R.id.txtScore3,R.id.txtScore4,R.id.txtScore5};
+    private ProgressBar pBar;
 
 
     public LeaderBoard() {
@@ -50,20 +58,20 @@ public class LeaderBoard extends Fragment {
         fragLeader =  inflater.inflate(R.layout.fragment_leader_board, container, false);
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
 
+        int[] txtName = new int[]{R.id.txtName1,R.id.txtName2,R.id.txtName3,R.id.txtName4,R.id.txtName5};
+        int[] txtScore = new int[]{R.id.txtScore1,R.id.txtScore2,R.id.txtScore3,R.id.txtScore4,R.id.txtScore5};
+        pBar = fragLeader.findViewById(R.id.pBar);
         DatabaseReference usersdRef = rootRef.child("Users");
+        hideStuff();
 
         usersdRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot uniqueKey : dataSnapshot.getChildren()) {
-                  // Log.i("Working","First Lopp " +uniqueKey.getKey() + uniqueKey.child("Name").getValue().toString());
                     for(DataSnapshot divisonKey : uniqueKey.getChildren()){
-                    //    Log.i("Working", "For children:      "+ divisonKey.getKey() +"  "+divisonKey.getChildren().toString());
                         for(DataSnapshot divisonEntires: divisonKey.getChildren()){
-                           // Log.i("Working", "For divison children"+divisonEntires.getKey() + "  "+ divisonEntires.getChildren().toString());
-                                //Log.i("Working", "Values are:   " + divisonEntires.getValue() + " Key is:   " + divisonEntires.getKey().equals("TopScore"));
-                                if(divisonEntires.getKey().equals("TopScore") == true){
+                            if(divisonEntires.getKey().equals("TopScore") == true){
                                     Log.i("WorkingM", divisonEntires.getValue()+ " "+ uniqueKey.child("Name").getValue());
                                     mMap.put(uniqueKey.child("Name").getValue().toString(),Integer.parseInt(divisonEntires.getValue().toString()));
                                 }
@@ -121,9 +129,18 @@ public class LeaderBoard extends Fragment {
             }
         }*/
         List<String> KeyList = new ArrayList<String>(mMap.keySet());
+        iterator=0;
         for (int i=KeyList.size()-1;i>=0 && i >=KeyList.size()-5; i-- ){
-            Log.d("KeyDebug",KeyList.get(i));
-            //abc.setText(keyList.get(i)+Integer.toString(mMap.get(keyList.get(i)).intValue()));
+            Log.d("KeyDebug",KeyList.get(i) +"    "+ Integer.toString(i) +"   iterator: " + txtName[iterator]);
+                if(iterator>4){
+                    iterator=0;
+                }
+            TextView tempName = fragLeader.findViewById(txtName[iterator]);
+            TextView tempScore = fragLeader.findViewById(txtScore[iterator]);
+            tempName.setText("    "+Integer.toString(iterator+1) + ".  " + KeyList.get(i));
+            tempScore.setText((mMap.get(KeyList.get(i))).toString());
+             iterator= iterator+1;
+            showStuff();
 
         }
         for (Map.Entry<String, Integer> entry : mMap.entrySet()){
@@ -132,18 +149,23 @@ public class LeaderBoard extends Fragment {
 
     }
 
-
-
-
-
-    public static class userInfo{
-        public String score, tries, tscore;
-
-        public userInfo(String tscore, String score,String tries){
-            this.score = score;
-            this.tries = tries;
-            this.tscore = tscore;
+    void hideStuff(){
+        for(int i=0;i<5;i++){
+            TextView hideName = fragLeader.findViewById(txtName[i]);
+            TextView hideScore = fragLeader.findViewById(txtScore[i]);
+            hideName.setVisibility(View.INVISIBLE);
+            hideScore.setVisibility(View.INVISIBLE);
         }
+        pBar.setVisibility(View.VISIBLE);
+    }
 
+    void showStuff(){
+        for(int i=0;i<5;i++){
+            TextView hideName = fragLeader.findViewById(txtName[i]);
+            TextView hideScore = fragLeader.findViewById(txtScore[i]);
+            hideName.setVisibility(View.VISIBLE);
+            hideScore.setVisibility(View.VISIBLE);
+        }
+        pBar.setVisibility(View.INVISIBLE);
     }
 }
