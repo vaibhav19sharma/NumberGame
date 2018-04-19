@@ -101,7 +101,7 @@ public class DivisonGame extends Fragment implements ValueEventListener {
                     txtGameOver.setText(Integer.toString(win) + " out of "+ Integer.toString(check));
                     txtGameOver.setTextSize(24);
 
-                    Toast.makeText(getContext(), Integer.toString(win) + " out of 10", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), Integer.toString(win) + " out of"+Integer.toString(check), Toast.LENGTH_SHORT).show();
                 }
             }
         });
