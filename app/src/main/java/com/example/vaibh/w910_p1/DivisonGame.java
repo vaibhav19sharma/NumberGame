@@ -247,8 +247,8 @@ public class DivisonGame extends Fragment implements ValueEventListener {
 
     private int newSubNumbers() {
         Random rand = new Random();
-        int up = rand.nextInt(200);
-        int down = rand.nextInt(200);
+        int up = rand.nextInt(100);
+        int down = rand.nextInt(100);
         txtNum.setText(Integer.toString(up+down));
         txtDeno.setText(Integer.toString(down));
 
@@ -257,8 +257,8 @@ public class DivisonGame extends Fragment implements ValueEventListener {
 
     private int newAddNumbers() {
         Random rand = new Random();
-        int up = rand.nextInt(200);
-        int down = rand.nextInt(200);
+        int up = rand.nextInt(100);
+        int down = rand.nextInt(100);
         txtNum.setText(Integer.toString(up));
         txtDeno.setText(Integer.toString(down));
 

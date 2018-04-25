@@ -60,11 +60,16 @@ public class LeaderBoard extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int count = 0;
+                String shortname = "";
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     TextView tempName = fragLeader.findViewById(txtName[count]);
                     TextView tempScore = fragLeader.findViewById(txtScore[count]);
                     TextView tempMath = fragLeader.findViewById(txtMath[count]);
-                    tempName.setText(postSnapshot.child("name").getValue().toString());
+                    if (postSnapshot.child("name").getValue().toString().length() > 10) {
+                        tempName.setText(postSnapshot.child("name").getValue().toString().substring(0,9));
+                    } else {
+                        tempName.setText(postSnapshot.child("name").getValue().toString());
+                    }
                     tempScore.setText(postSnapshot.child("score").getValue().toString());
                     tempMath.setText(postSnapshot.child("mathtype").getValue().toString());
                     count += 1;
