@@ -11,21 +11,23 @@
         android:id="@+id/txtHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/textView4"
         android:layout_centerHorizontal="true"
         android:layout_column="1"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="13dp"
         android:layout_row="0"
-        android:text="Top 5 Users                       " />
+        android:fontFamily="casual"
+        android:text="Top 5 Users Scores"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/txtName1"
-        android:layout_alignTop="@+id/textView5"
+        android:layout_above="@+id/txtName1"
         android:layout_column="0"
         android:layout_row="1"
+        android:layout_toStartOf="@+id/txtHeading"
         android:text="Name"
         android:textStyle="bold|italic" />
 
@@ -33,11 +35,11 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
         android:layout_column="2"
-        android:layout_marginEnd="74dp"
-        android:layout_marginTop="61dp"
+        android:layout_marginEnd="35dp"
         android:layout_row="1"
         android:text="Score (Out of 10)"
         android:textStyle="bold|italic" />
@@ -46,10 +48,10 @@
         android:id="@+id/txtScore1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/txtName1"
+        android:layout_alignBaseline="@+id/txtName1"
+        android:layout_alignBottom="@+id/txtName1"
+        android:layout_alignEnd="@+id/textView5"
         android:layout_column="2"
-        android:layout_marginEnd="108dp"
         android:layout_row="2"
         android:text="TextView" />
 
@@ -57,8 +59,9 @@
         android:id="@+id/txtScore2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/txtScore1"
-        android:layout_below="@+id/txtScore1"
+        android:layout_alignBaseline="@+id/txtMath2"
+        android:layout_alignBottom="@+id/txtMath2"
+        android:layout_alignRight="@+id/txtScore1"
         android:layout_column="2"
         android:layout_row="3"
         android:text="TextView" />
@@ -67,9 +70,12 @@
         android:id="@+id/txtScore3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/txtScore1"
-        android:layout_below="@+id/txtScore2"
+        android:layout_alignBaseline="@+id/txtMath3"
+        android:layout_alignBottom="@+id/txtMath3"
+        android:layout_alignRight="@+id/txtScore2"
+        android:layout_alignTop="@+id/txtScore2"
         android:layout_column="2"
+        android:layout_marginTop="30dp"
         android:layout_row="4"
         android:text="TextView" />
 
@@ -77,9 +83,12 @@
         android:id="@+id/txtScore4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/txtScore1"
-        android:layout_below="@+id/txtScore3"
+        android:layout_alignBaseline="@+id/txtName4"
+        android:layout_alignBottom="@+id/txtName4"
+        android:layout_alignRight="@+id/txtScore3"
+        android:layout_alignTop="@+id/txtScore3"
         android:layout_column="2"
+        android:layout_marginTop="30dp"
         android:layout_row="5"
         android:text="TextView" />
 
@@ -87,8 +96,8 @@
         android:id="@+id/txtScore5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/txtScore1"
-        android:layout_below="@+id/txtScore4"
+        android:layout_alignRight="@+id/txtScore4"
+        android:layout_alignTop="@+id/txtName5"
         android:layout_column="2"
         android:layout_row="6"
         android:text="TextView" />
@@ -97,9 +106,10 @@
         android:id="@+id/txtName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignStart="@+id/textView4"
         android:layout_alignTop="@+id/pBar"
         android:layout_column="0"
+        android:layout_marginTop="30dp"
         android:layout_row="2"
         android:text="TextView" />
 
@@ -107,9 +117,10 @@
         android:id="@+id/txtName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/txtScore1"
+        android:layout_alignStart="@+id/txtName1"
+        android:layout_below="@+id/txtName1"
         android:layout_column="0"
+        android:layout_marginTop="30dp"
         android:layout_row="3"
         android:text="TextView" />
 
@@ -117,9 +128,10 @@
         android:id="@+id/txtName3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignStart="@+id/txtName2"
         android:layout_below="@+id/txtName2"
         android:layout_column="0"
+        android:layout_marginTop="30dp"
         android:layout_row="4"
         android:text="TextView" />
 
@@ -127,9 +139,10 @@
         android:id="@+id/txtName4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignStart="@+id/txtName3"
         android:layout_below="@+id/txtName3"
         android:layout_column="0"
+        android:layout_marginTop="30dp"
         android:layout_row="5"
         android:text="TextView" />
 
@@ -137,9 +150,10 @@
         android:id="@+id/txtName5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignStart="@+id/txtName4"
         android:layout_below="@+id/txtName4"
         android:layout_column="0"
+        android:layout_marginTop="30dp"
         android:layout_row="6"
         android:text="TextView" />
 
@@ -148,10 +162,61 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_column="1"
-        android:layout_marginStart="129dp"
+        android:layout_marginEnd="44dp"
         android:layout_marginTop="94dp"
-        android:layout_row="3" />
+        android:layout_row="3"
+        android:layout_toStartOf="@+id/textView5"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/pBar"
+        android:layout_alignTop="@+id/textView5"
+        android:text="Math Type"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtMath1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/pBar"
+        android:layout_alignTop="@+id/txtName1"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/txtMath2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtMath1"
+        android:layout_alignTop="@+id/txtName2"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/txtMath3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtName3"
+        android:layout_alignBottom="@+id/txtName3"
+        android:layout_alignStart="@+id/txtMath2"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/txtMath4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtMath3"
+        android:layout_alignTop="@+id/txtName4"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/txtMath5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtMath4"
+        android:layout_alignTop="@+id/txtName5"
+        android:text="TextView" />
 </RelativeLayout>

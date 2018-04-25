@@ -5,14 +5,30 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Divison Game" />
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_menu_add"
+            android:title="Addition" />
+        <item
+            android:id="@+id/nav_sub"
+            android:icon="@drawable/ic_menu_sub"
+            android:title="Subtraction" />
+        <item
+            android:id="@+id/nav_mul"
+            android:icon="@drawable/ic_menu_mult"
+            android:title="Multiplication" />
+        <item
+            android:id="@+id/nav_div"
+            android:icon="@drawable/ic_menu_div"
+            android:title="Divison" />
         <item
             android:id="@+id/nav_leaderboard"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Leader Boards"
             />
+        <item
+            android:id="@+id/nav_data"
+            android:icon="@drawable/ic_menu_data"
+            android:title="Track Your Scores" />
     </group>
 
     <item android:title="Communicate">

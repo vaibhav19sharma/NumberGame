@@ -10,14 +10,13 @@
         android:id="@+id/edtUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="156dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
-        tools:text="Email" />
+        tools:text="Enter Your Email" />
 
     <EditText
         android:id="@+id/edtPassword"
@@ -28,17 +27,16 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        tools:text="Password" />
+        tools:text="Enter Your Password" />
 
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="183dp"
-        android:layout_marginStart="134dp"
+        android:layout_above="@+id/btnSignup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp"
         android:text="Login" />
 
     <Button
@@ -49,4 +47,17 @@
         android:layout_alignStart="@+id/btnLogin"
         android:layout_marginBottom="100dp"
         android:text="Sign up" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp"
+        android:fontFamily="casual"
+        android:text="Sign in with Email"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 </RelativeLayout>

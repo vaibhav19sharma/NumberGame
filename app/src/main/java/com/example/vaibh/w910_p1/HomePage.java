@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,16 +27,106 @@ public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FirebaseAuth mAuth;
-    TextView txtMessage;
     String uid;
+    RelativeLayout home;
+    Button btnAdd, btnSub, btnMul, btnDiv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        txtMessage = findViewById(R.id.textView3);
+        home = (RelativeLayout) findViewById(R.id.home);
         setSupportActionBar(toolbar);
+
+        btnAdd = findViewById(R.id.btnAdd);
+        btnSub = findViewById(R.id.btnSub);
+        btnMul = findViewById(R.id.btnMul);
+        btnDiv = findViewById(R.id.btnDiv);
+
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = null;
+
+                fragment = new DivisonGame();
+                Bundle args = new Bundle();
+                args.putString("mathType", Integer.toString(R.id.nav_add));
+                //txtMessage.setVisibility(View.INVISIBLE);
+                fragment.setArguments(args);
+
+                if(fragment != null){
+                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    home.setVisibility(View.INVISIBLE);
+                    ft.replace(R.id.content_main, fragment);
+                    ft.commit();
+                }
+
+            }
+        });
+
+        btnSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = null;
+
+                fragment = new DivisonGame();
+                Bundle args = new Bundle();
+                args.putString("mathType", Integer.toString(R.id.nav_sub));
+                //txtMessage.setVisibility(View.INVISIBLE);
+                fragment.setArguments(args);
+
+                if(fragment != null){
+                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    home.setVisibility(View.INVISIBLE);
+                    ft.replace(R.id.content_main, fragment);
+                    ft.commit();
+                }
+            }
+        });
+
+        btnMul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = null;
+
+                fragment = new DivisonGame();
+                Bundle args = new Bundle();
+                args.putString("mathType", Integer.toString(R.id.nav_mul));
+                //txtMessage.setVisibility(View.INVISIBLE);
+                fragment.setArguments(args);
+
+                if(fragment != null){
+                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    home.setVisibility(View.INVISIBLE);
+                    ft.replace(R.id.content_main, fragment);
+                    ft.commit();
+                }
+            }
+        });
+
+        btnDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = null;
+
+                fragment = new DivisonGame();
+                Bundle args = new Bundle();
+                args.putString("mathType", Integer.toString(R.id.nav_div));
+                //txtMessage.setVisibility(View.INVISIBLE);
+                fragment.setArguments(args);
+
+                if(fragment != null){
+                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    home.setVisibility(View.INVISIBLE);
+                    ft.replace(R.id.content_main, fragment);
+                    ft.commit();
+                }
+
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -48,8 +140,6 @@ public class HomePage extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("Name").getValue().toString();
-                TextView txtWelcomeName = findViewById(R.id.txtWelcomeName);
-                txtWelcomeName.setText(name);
 
             }
 
@@ -107,18 +197,48 @@ public class HomePage extends AppCompatActivity
 
         Fragment fragment = null;
 
-        if (id == R.id.nav_camera) {
+        // for division
+        if (id == R.id.nav_div) {
             fragment = new DivisonGame();
-            txtMessage.setVisibility(View.INVISIBLE);
-
+            Bundle args = new Bundle();
+            args.putString("mathType", Integer.toString(id));
+            //txtMessage.setVisibility(View.INVISIBLE);
+            fragment.setArguments(args);
+        }
+        else if (id == R.id.nav_add) {
+            fragment = new DivisonGame();
+            Bundle args = new Bundle();
+            args.putString("mathType", Integer.toString(id));
+            //txtMessage.setVisibility(View.INVISIBLE);
+            fragment.setArguments(args);
+        }
+        else if (id == R.id.nav_sub) {
+            fragment = new DivisonGame();
+            Bundle args = new Bundle();
+            args.putString("mathType", Integer.toString(id));
+            //txtMessage.setVisibility(View.INVISIBLE);
+            fragment.setArguments(args);
+        }
+        else if (id == R.id.nav_mul) {
+            fragment = new DivisonGame();
+            Bundle args = new Bundle();
+            args.putString("mathType", Integer.toString(id));
+            //txtMessage.setVisibility(View.INVISIBLE);
+            fragment.setArguments(args);
+        }
+        else if (id == R.id.nav_data) {
+            fragment = new DataPage();
+            //txtMessage.setVisibility(View.INVISIBLE);
         }
         else if(id == R.id.nav_leaderboard){
             fragment = new LeaderBoard();
-            txtMessage.setVisibility(View.INVISIBLE);
+            //txtMessage.setVisibility(View.INVISIBLE);
         }
+
 
         if(fragment != null){
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            home.setVisibility(View.INVISIBLE);
             ft.replace(R.id.content_main, fragment);
             ft.commit();
         }

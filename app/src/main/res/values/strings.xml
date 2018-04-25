@@ -10,4 +10,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="division">÷</string>
+    <string name="multiply">x</string>
+    <string name="add">+</string>
+    <string name="subtract">-</string>
 </resources>

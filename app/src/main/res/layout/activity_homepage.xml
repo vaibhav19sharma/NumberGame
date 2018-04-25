@@ -1,16 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txtMessage"
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:text="Open the Nav Drawer to get Started"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="169dp" />
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/mathhomepage" />
 
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="281dp"
+        android:layout_marginEnd="257dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="154dp"
+        android:background="@android:drawable/screen_background_light_transparent" />
+
+    <Button
+        android:id="@+id/btnSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnAdd"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/btnAdd"
+        android:layout_alignTop="@+id/btnAdd"
+        android:layout_marginEnd="53dp"
+        android:layout_marginStart="202dp"
+        android:background="@android:drawable/screen_background_light_transparent" />
+
+    <Button
+        android:id="@+id/btnMul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/btnAdd"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/btnAdd"
+        android:layout_below="@+id/btnSub"
+        android:layout_marginBottom="78dp"
+        android:layout_marginTop="127dp"
+        android:background="@android:drawable/screen_background_light_transparent" />
+
+    <Button
+        android:id="@+id/btnDiv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnMul"
+        android:layout_alignEnd="@+id/btnSub"
+        android:layout_alignStart="@+id/btnSub"
+        android:layout_alignTop="@+id/btnMul"
+        android:background="@android:drawable/screen_background_light_transparent" />
 </RelativeLayout>
